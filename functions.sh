@@ -27,3 +27,135 @@ function format_telegram_ccnorte(){
 function format_telegram_forestrun(){
 	echo "*${NAME}*%0A - Data: ${DATE}%0A - Vía: forestrun %0A - Máis información: ${URL}"
 }
+
+function get_month_carreiras_galegas(){
+	case "$1" in
+	"xaneiro")
+		echo "/01/"
+		;;
+	"febreiro")
+		echo "/02/"
+		;;
+	"marzo")
+		echo "/03/"
+		;;
+	"abril")
+		echo "/04/"
+		;;
+	"maio")
+		echo "/05/"
+		;;
+	"xuño")
+		echo "/06/"
+		;;
+	"xullo")
+		echo "/07/"
+		;;
+	"agosto")
+		echo "/08/"
+		;;
+	"setembro")
+		echo "/09/"
+		;;
+	"outubro")
+		echo "/10/"
+		;;
+	"novembro")
+		echo "/11/"
+		;;
+	"decembro")
+		echo "/12/"
+		;;
+	*)
+		echo "NA"
+		;;
+	esac
+}
+
+function get_month_ccnorte(){
+	case "$1" in
+	"xaneiro")
+		echo " ene. "
+		;;
+	"febreiro")
+		echo " feb. "
+		;;
+	"marzo")
+		echo " mar. "
+		;;
+	"abril")
+		echo " abr. "
+		;;
+	"maio")
+		echo " may. "
+		;;
+	"xuño")
+		echo " jun. "
+		;;
+	"xullo")
+		echo " jul. "
+		;;
+	"agosto")
+		echo " ago. "
+		;;
+	"setembro")
+		echo " sep. "
+		;;
+	"outubro")
+		echo " oct. "
+		;;
+	"novembro")
+		echo " nov. "
+		;;
+	"decembro")
+		echo " dic. "
+		;;
+	*)
+		echo "NA"
+		;;
+	esac
+}
+
+function get_month_forestrun(){
+	case "$1" in
+	"xaneiro")
+		echo " Ene "
+		;;
+	"febreiro")
+		echo " Feb "
+		;;
+	"marzo")
+		echo " Mar "
+		;;
+	"abril")
+		echo " Abr "
+		;;
+	"maio")
+		echo " May "
+		;;
+	"xuño")
+		echo " Jun "
+		;;
+	"xullo")
+		echo " Jul "
+		;;
+	"agosto")
+		echo " Ago "
+		;;
+	"setembro")
+		echo " Sep "
+		;;
+	"outubro")
+		echo " Oct "
+		;;
+	"novembro")
+		echo " Nov "
+		;;
+	"decembro")
+		echo " Dic "
+		;;
+	*)
+		echo "NA"
+		;;
+	esac
+}

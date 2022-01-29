@@ -9,7 +9,11 @@ Os scripts `process_*.sh` baixan toda a información sobre carreiras dispoñible
 
 A publicación na canle de Telegram faise cun bot e os scripts cargan esta configuración dun ficheiro `bot.conf` que debe existir no mesmo directorio no que están os scripts. Este ficheiro debe conter o seguinte:
 
-```
+```A
 BOT_ID_TOKEN=<bot_id_token>
 CHAT_ID=<chat_id>
 ```
+
+## Resumos mensuais
+
+Os scripts `publish_*_mes.sh` permiten publicar unha mensaxe cun resumo das carreiras do mes indicado. Os scripts crean os ficheiros cas carreiras filtradas créanse en `data/<mes>`. Por exemplo, `publish_ccnorte_mes.sh febreiro` publicará unha mensaxe cas carreiras do mes de febreiro publicadas en Champion Chip Norte. 
