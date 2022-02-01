@@ -9,7 +9,11 @@ fi
 SCRIPT_DIR=$(dirname "$0")
 
 source ${SCRIPT_DIR}/functions.sh
-source ${SCRIPT_DIR}/bot.conf.test
+source ${SCRIPT_DIR}/bot.conf
+
+if [ $# != 1 ]; then
+    show_error "Erro: este script requere un argumento (nome do mes).\n"
+fi
 
 MES=$1
 RACES_DB="${SCRIPT_DIR}/data/${MES}/carreiras_carreiras_galegas.tsv"

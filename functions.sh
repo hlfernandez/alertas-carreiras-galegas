@@ -159,3 +159,10 @@ function get_month_forestrun(){
 		;;
 	esac
 }
+
+function show_error() {
+	tput setaf 1
+	echo -e "$1"
+	tput sgr0
+	exit 1
+}
