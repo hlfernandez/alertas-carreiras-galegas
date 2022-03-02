@@ -29,7 +29,7 @@ if [ "${FILTER}" == "NA" ]; then
 fi
 
 mkdir -p "${SCRIPT_DIR}/data/${MES}" && rm -f ${RACES_DB}
-grep -F "${FILTER}" "${SCRIPT_DIR}/data/carreiras_carreiras_galegas.tsv" > ${RACES_DB}
+grep -F "${FILTER}" "${SCRIPT_DIR}/data/carreiras_carreiras_galegas.tsv" | sort --key=1 --field-separator=';' > ${RACES_DB}
 
 while read LINE
 do
