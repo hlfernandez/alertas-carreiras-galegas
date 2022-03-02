@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function escape_markdown() {
-	echo "${1}" | sed 's#-#\\-#g; s#\.#\\\.#g; s/#/\\%23/g'
+	echo "${1}" | sed 's#-#\\-#g; s#\.#\\\.#g; s/#/\\%23/g; s/(/\\(/g; s/)/\\)/g'
 }
 
 function send_telegram() {
@@ -17,7 +17,8 @@ function process_name() {
 	echo $1 \
 		| sed 's#&aacute;#á#g; s#&eacute;#é#g; s#&iacute;#í#g; s#&oacute;#ó#g; s#&uacute;#ú#g' \
 		| sed 's#&Aacute;#Á#g; s#&Eacute;#É#g; s#&Iacute;#Í#g; s#&Oacute;#Ó#g; s#&Uacute;#Ú#g' \
-		| sed 's#&Ntilde;#Ñ#g; s#&ntilde;#ñ#g; s#&ldquo;#"#g; s#&rdquo;#"#g; s#&ndash;#-#g'
+		| sed 's#&Ntilde;#Ñ#g; s#&ntilde;#ñ#g; s#&ldquo;#"#g; s#&rdquo;#"#g; s#&ndash;#-#g' \
+		| sed 's#&ordm;#º#g; s#&amp;#&#g'
 }
 
 function format_telegram_ccnorte(){
