@@ -1,11 +1,12 @@
 #!/bin/bash
 
 function escape_markdown() {
-	echo "${1}" | sed 's#-#\\-#g; s#\.#\\\.#g; s/#/\\%23/g; s/(/\\(/g; s/)/\\)/g'
+	echo "${1}" | sed 's#-#\\-#g; s#\.#\\\.#g; s/#/\\%23/g; s/(/\\(/g; s/)/\\)/g; s#&#\\%26#g'
 }
 
 function send_telegram() {
 	MESSAGE=$(escape_markdown "${1}")
+	echo $MESSAGE
 	curl "https://api.telegram.org/bot${BOT_ID_TOKEN}/sendMessage?chat_id=@${CHAT_ID}&text=${MESSAGE}&parse_mode=MarkdownV2"
 }
 
