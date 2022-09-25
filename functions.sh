@@ -14,6 +14,8 @@ function send_telegram() {
 	curl "https://api.telegram.org/bot${BOT_ID_TOKEN}/sendMessage?chat_id=@${CHAT_ID}&text=${MESSAGE}&parse_mode=MarkdownV2"
 	if [ $? -gt 0 ]; then
 		echo -e "Error sending Telegram.\nInput: ${1}"
+	else
+		sleep 2
 	fi
 }
 
@@ -35,6 +37,10 @@ function format_telegram_ccnorte(){
 
 function format_telegram_forestrun(){
 	echo "*${NAME}*%0A - Data: ${DATE}%0A - Vía: forestrun %0A - Máis información: ${URL}"
+}
+
+function format_sportmaniacs(){
+	echo "*${NAME}*%0A - Data: ${DATE}%0A - Vía: Sportmaniacs %0A - Máis información: ${URL}"
 }
 
 function get_month_carreiras_galegas(){

@@ -4,6 +4,7 @@ Este repositorio contén o código fonte que emprego para procesar a informació
 - [Champion Chip Norte](championchipnorte.com/).
 - [Carreiras Galegas](https://www.carreirasgalegas.com/calendario).
 - [forestrun](https://forestrun.es/).
+- [Sportmaniacs](https://sportmaniacs.com/).
 
 Os scripts `process_*.sh` baixan toda a información sobre carreiras dispoñible nas dúas páxinas e gardan a información en ficheiros que se crean na carpeta `data` (un por fonte). No momento en que se garda a información dunha carreira compróbase se esta xa estaba na base de datos, e se non o estaba entón publícase na canle de Telegram.
 
