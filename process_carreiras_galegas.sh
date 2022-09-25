@@ -11,6 +11,8 @@ SCRIPT_DIR=$(dirname "$0")
 source ${SCRIPT_DIR}/functions.sh
 source ${SCRIPT_DIR}/bot.conf
 
+log_start "Carreiras Galegas"
+
 BASE_URL="http://carreirasgalegas.com/"
 RACES_DB="${SCRIPT_DIR}/data/carreiras_carreiras_galegas.tsv"
 

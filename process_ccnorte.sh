@@ -11,6 +11,8 @@ SCRIPT_DIR=$(dirname "$0")
 source ${SCRIPT_DIR}/functions.sh
 source ${SCRIPT_DIR}/bot.conf
 
+log_start "CCNorte"
+
 TEMP_DIR=$(mktemp -d /tmp/ccnorte.XXXXXXX)
 
 for i in {1..4}; do

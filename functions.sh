@@ -1,13 +1,20 @@
 #!/bin/bash
 
+function log_start() {
+	echo -e "\n--\n${1} " $(date) "\n"
+}
+
 function escape_markdown() {
 	echo "${1}" | sed 's#-#\\-#g; s#\.#\\\.#g; s/#/\\%23/g; s/(/\\(/g; s/)/\\)/g; s#&#\\%26#g'
 }
 
 function send_telegram() {
 	MESSAGE=$(escape_markdown "${1}")
-	echo $MESSAGE
+	echo ${MESSAGE}
 	curl "https://api.telegram.org/bot${BOT_ID_TOKEN}/sendMessage?chat_id=@${CHAT_ID}&text=${MESSAGE}&parse_mode=MarkdownV2"
+	if [ $? -gt 0 ]; then
+		echo -e "Error sending Telegram.\nInput: ${1}"
+	fi
 }
 
 function format_telegram_carreiras_galegas() {

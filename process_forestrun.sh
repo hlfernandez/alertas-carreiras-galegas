@@ -11,6 +11,8 @@ SCRIPT_DIR=$(dirname "$0")
 source ${SCRIPT_DIR}/functions.sh
 source ${SCRIPT_DIR}/bot.conf
 
+log_start "Forestrun"
+
 TEMP_DIR=$(mktemp -d /tmp/forestrun.XXXXXXX)
 
 wget wget https://forestrun.es/ -O ${TEMP_DIR}/forestrun.html
