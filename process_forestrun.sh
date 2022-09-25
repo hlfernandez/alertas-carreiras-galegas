@@ -15,7 +15,7 @@ log_start "Forestrun"
 
 TEMP_DIR=$(mktemp -d /tmp/forestrun.XXXXXXX)
 
-wget wget https://forestrun.es/ -O ${TEMP_DIR}/forestrun.html
+wget https://forestrun.es/ -O ${TEMP_DIR}/forestrun.html
 xmllint --html ${TEMP_DIR}/forestrun.html > ${TEMP_DIR}/forestrun.clean.html
 
 grep -e 'content-title' -e '<span class="ev-day">' ${TEMP_DIR}/forestrun.clean.html | sed -e '1d' > ${TEMP_DIR}/races.txt
