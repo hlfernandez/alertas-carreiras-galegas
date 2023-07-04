@@ -1,3 +1,4 @@
+import time
 import telegram
 import os
 
@@ -30,6 +31,7 @@ def sendTelegram(races, source):
     for race in races:
         try:
             sendTelegramRace(race, source)
+            time.sleep(2.5)
         except Exception as e:
             print('*' * 50)
             print('Error sending Telegram message for:', race)
