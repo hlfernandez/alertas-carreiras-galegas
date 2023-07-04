@@ -2,3 +2,5 @@ artwork
 data
 bot.conf*
 log.txt
+races/.venv
+races/__pycache__
