@@ -51,7 +51,7 @@ class DeporticketDownloader:
                         eventLocation = line.rstrip()
                         if (DeporticketDownloader.includeLocation(eventLocation) and 
                             DeporticketDownloader.includeName(eventName)):
-                            races.append(Race(eventUrl, eventName, eventDate))
+                            races.append(Race(eventDate, eventName, eventUrl))
                         status = None
                         eventName = None
                         eventUrl = None

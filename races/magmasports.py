@@ -27,7 +27,7 @@ class MagmaEventsDownloader:
 
     @staticmethod
     def newRace(urlLine: str, nameLine: str, dateLine: str) -> Race:
-        return Race(urlLine.strip(), nameLine.strip(), dateLine[:-1].strip())
+        return Race(dateLine[:-1].strip(), nameLine.strip(), urlLine.strip())
 
     @staticmethod
     def processEventName(name: str) -> str:
@@ -38,7 +38,6 @@ class MagmaEventsDownloader:
         req = Request(url)
         try:
             with urlopen(req) as f:
-                dateLine = 0
                 eventName = None
                 eventUrl = None
                 # TODO: try enums for encoding the status (https://docs.python.org/3/library/enum.html)
