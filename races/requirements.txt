@@ -9,11 +9,14 @@ importlib-resources==5.4.0
 python-telegram-bot==13.12
 pytz==2022.7.1
 pytz-deprecation-shim==0.1.0.post0
-requests==2.27.1
+requests==2.31.0
 six==1.16.0
 soupsieve==2.5
 tornado==6.1
+types-beautifulsoup4==4.12.0.7
+types-html5lib==1.1.11.15
+types-requests==2.31.0.20231231
 tzdata==2022.7
 tzlocal==4.2
-urllib3==1.26.16
+urllib3==2.1.0
 zipp==3.6.0
