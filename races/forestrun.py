@@ -1,13 +1,12 @@
 import sys
-import os
 import tempfile
+import json
+from typing import List
+import requests
 from bs4 import BeautifulSoup
 import telegram_sender
 from races import Race, SiteRaces
 
-import json
-import requests
-from utils import text_to_id
 
 class ForestRunEventsParser:
 
@@ -25,9 +24,9 @@ class ForestRunEventsParser:
         script_contents = [script.get_text() for script in script_elements]
 
         return script_contents
-    
-    def get_races(self):
-        races = []
+
+    def get_races(self) -> List[Race]:
+        downloaded_races: List[Race] = []
         for script_content in self.extract_script_elements():
             json_script_element = json.loads(script_content)
 
@@ -36,25 +35,37 @@ class ForestRunEventsParser:
                 name = json_script_element['name']
                 url = json_script_element['offers']['url']
 
-                races.append(Race(date, name, url))
-        
-        return races
+                downloaded_races.append(Race(date, name, url))
+
+        return downloaded_races
 
 
-class ForestRunEventsDownloader:
+class HtmlDownloader:
 
-    baseUrl = 'https://forestrun.es'
+    def __init__(self) -> None:
+        self.html_file = ''
 
-    def download(self):
-        response = requests.get(self.baseUrl)
+    def download_file(self, base_url: str) -> None:
+
+        response = requests.get(base_url, timeout=240)
         response.raise_for_status()
 
         with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix=".html") as temp_file:
             temp_file.write(response.text)
 
-            parser = ForestRunEventsParser(temp_file.name)
+            self.html_file = temp_file.name
 
-            return parser.get_races()
+
+class ForestRunEventsDownloader(HtmlDownloader):
+
+    baseUrl = 'https://forestrun.es'
+
+    def download(self)  -> List[Race]:
+        self.download_file(self.baseUrl)
+
+        parser = ForestRunEventsParser(self.html_file)
+
+        return parser.get_races()
 
 class ForestRunRaces(SiteRaces):
     def getDownloader(self):
@@ -66,7 +77,7 @@ if __name__ == '__main__':
         exit(1)
 
     races = ForestRunRaces(sys.argv[1])
-    newRaces = races.updateRaces()
+    newRaces: List[Race] = races.updateRaces()
     races.persistRaces()
 
     telegram_sender.sendTelegram(newRaces, 'forestrun')
