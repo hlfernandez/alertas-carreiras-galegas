@@ -75,8 +75,8 @@ class MagmaEventsDownloader:
             print('Reason: ', e.reason)
 
 class MagmaSportsRaces(SiteRaces):
-    def getDownloader(self):
-        return MagmaEventsDownloader(self.eventPages)
+    def get_downloader(self):
+        return MagmaEventsDownloader(self.event_pages)
 
 
 if __name__ == '__main__':
@@ -85,8 +85,8 @@ if __name__ == '__main__':
         exit(1)
 
     races = MagmaSportsRaces(sys.argv[1], 2)
-    newRaces = races.updateRaces()
-    races.persistRaces()
+    newRaces = races.update_races()
+    races.persist_races()
 
     telegram_sender.sendTelegram(newRaces, 'MagmaSports')
     

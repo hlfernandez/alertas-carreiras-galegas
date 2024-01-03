@@ -80,8 +80,8 @@ class DeporticketDownloader:
             print('Reason: ', e.reason)
     
 class DeporticketRaces(SiteRaces):
-    def getDownloader(self):
-        return DeporticketDownloader(self.eventPages)
+    def get_downloader(self):
+        return DeporticketDownloader(self.event_pages)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -89,8 +89,8 @@ if __name__ == '__main__':
         exit(1)
 
     races = DeporticketRaces(sys.argv[1], 4)
-    newRaces = races.updateRaces()
-    races.persistRaces()
+    newRaces = races.update_races()
+    races.persist_races()
 
     telegram_sender.sendTelegram(newRaces, 'Deporticket')
     

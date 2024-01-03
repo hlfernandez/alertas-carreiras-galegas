@@ -42,7 +42,7 @@ class CarreirasGalegasEventsDownloader:
         return races
 
 class CarreirasGalegasRaces(SiteRaces):
-    def getDownloader(self):
+    def get_downloader(self):
         return CarreirasGalegasEventsDownloader()
 
 if __name__ == '__main__':
@@ -51,8 +51,8 @@ if __name__ == '__main__':
         exit(1)
 
     races = CarreirasGalegasRaces(sys.argv[1])
-    newRaces = races.updateRaces()
-    races.persistRaces()
+    newRaces = races.update_races()
+    races.persist_races()
 
     telegram_sender.sendTelegram(newRaces, 'Carreiras Galegas')
     

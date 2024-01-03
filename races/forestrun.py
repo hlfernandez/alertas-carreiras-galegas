@@ -68,7 +68,7 @@ class ForestRunEventsDownloader(HtmlDownloader):
         return parser.get_races()
 
 class ForestRunRaces(SiteRaces):
-    def getDownloader(self):
+    def get_downloader(self):
         return ForestRunEventsDownloader()
 
 if __name__ == '__main__':
@@ -77,7 +77,7 @@ if __name__ == '__main__':
         exit(1)
 
     races = ForestRunRaces(sys.argv[1])
-    newRaces: List[Race] = races.updateRaces()
-    races.persistRaces()
+    newRaces: List[Race] = races.update_races()
+    races.persist_races()
 
     telegram_sender.sendTelegram(newRaces, 'forestrun')

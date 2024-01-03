@@ -23,7 +23,7 @@ class LocalRaces:
         if os.path.isfile(path):
             with open(path, 'r') as src:
                 for line in src.readlines():
-                    races.append(Race.fromCsvLine(line[:-1]))
+                    races.append(Race.from_csv_line(line[:-1]))
         
         return races
 
