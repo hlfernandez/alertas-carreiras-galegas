@@ -35,6 +35,25 @@ cat ${TEMP_DIR}/all.html | grep -A1 -e 'itemprop="startDate"' -e 'itemprop="url"
 # 	<span itemprop="name">DESAFIO BOOT CAMP VIGO 2022</span>
 #
 
+convert_date() {
+    declare -A months=(["ene."]="01" ["feb."]="02" ["mar."]="03" ["abr."]="04" ["may."]="05" ["jun."]="06" ["jul."]="07" ["ago."]="08" ["sept."]="09" ["oct."]="10" ["nov."]="11" ["dic."]="12")
+
+    input_date="$1"
+
+    day=$(echo $input_date | awk '{print $1}')
+    month=$(echo $input_date | awk '{print $2}')
+    year=$(echo $input_date | awk '{print $3}')
+
+    # Handle days with ranges like "28-30"
+    day=$(echo $day | sed 's/-/\//')
+
+    month_num=${months[$month]}
+
+    output_date="$year-$month_num-$day"
+
+    echo $output_date
+}
+
 RACES_DB="${SCRIPT_DIR}/data/carreiras_ccnorte.tsv"
 
 mkdir -p "${SCRIPT_DIR}/data" && touch ${RACES_DB}
@@ -42,6 +61,7 @@ mkdir -p "${SCRIPT_DIR}/data" && touch ${RACES_DB}
 while read LINE; do
 	read DATE
 	DATE=$(echo "${DATE}" | sed 's#^ *##g; s# *</span>$##g')
+	DATE=$(convert_date "${DATE}")
 
 	read URL
 	URL=$(echo "${URL}" | sed 's#^ *.*href="##g; s#".*$##g')

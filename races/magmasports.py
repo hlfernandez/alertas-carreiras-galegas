@@ -26,8 +26,14 @@ class MagmaEventsDownloader:
         return webRaces
 
     @staticmethod
+    def reformatDate(date):
+        day, month, year = date.split('-')
+        return f'{year}-{month}-{day}'
+
+    @staticmethod
     def newRace(urlLine: str, nameLine: str, dateLine: str) -> Race:
-        return Race(dateLine[:-1].strip(), nameLine.strip(), urlLine.strip())
+        date = MagmaEventsDownloader.reformatDate(dateLine[:-1].strip())
+        return Race(date, nameLine.strip(), urlLine.strip())
 
     @staticmethod
     def processEventName(name: str) -> str:

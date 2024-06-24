@@ -49,6 +49,25 @@ cat ${TEMP_DIR}/all_clean.html | grep --no-group-separator -P -A1 'data-race-car
 #                            <time datetime="2021-11-07 00:00:00">07 nov 2021</time>
 #	# blank line                            
 
+convert_date() {
+    declare -A months=(["ene"]="01" ["feb"]="02" ["mar"]="03" ["abr"]="04" ["may"]="05" ["jun"]="06" ["jul"]="07" ["ago"]="08" ["sep"]="09" ["oct"]="10" ["nov"]="11" ["dic"]="12")
+
+    input_date="$1"
+
+    day=$(echo $input_date | awk '{print $1}')
+    month=$(echo $input_date | awk '{print $2}')
+    year=$(echo $input_date | awk '{print $3}')
+
+    # Handle days with ranges like "28-30"
+    day=$(echo $day | sed 's/-/\//')
+
+    month_num=${months[$month]}
+
+    output_date="$year-$month_num-$day"
+
+    echo $output_date
+}
+
 RACES_DB="${SCRIPT_DIR}/data/sportmaniacs.tsv"
 
 mkdir -p "${SCRIPT_DIR}/data" && touch ${RACES_DB}
@@ -62,6 +81,7 @@ while read LINE; do
 	read NAME
 	read DATE
 	DATE=$(echo ${DATE} | grep -o -P '>[0-9]+.*<' | tr -d '>' | tr -d '<')
+	DATE=$(convert_date "${DATE}")
 	read IGNORE
 
     NAME=$(process_name "${NAME}")
